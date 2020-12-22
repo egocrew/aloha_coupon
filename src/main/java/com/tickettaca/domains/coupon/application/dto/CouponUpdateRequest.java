@@ -1,0 +1,14 @@
+package com.tickettaca.domains.coupon.application.dto;
+
+import com.tickettaca.domains.coupon.domain.CouponStatus;
+import lombok.Getter;
+
+import java.time.LocalDate;
+
+@Getter
+public class CouponUpdateRequest {
+    private LocalDate issueDate;
+    private LocalDate expirationDate;
+    private Long bookId;
+    private CouponStatus couponStatus;
+}
