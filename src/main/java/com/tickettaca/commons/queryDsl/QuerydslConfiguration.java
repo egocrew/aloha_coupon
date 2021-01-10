@@ -1,4 +1,4 @@
-package com.tickettaca.commons;
+package com.tickettaca.commons.queryDsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;
@@ -10,11 +10,10 @@ import javax.persistence.PersistenceContext;
 @Configuration
 public class QuerydslConfiguration {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+  @PersistenceContext private EntityManager entityManager;
 
-    @Bean
-    public JPAQueryFactory jpaQueryFactory() {
-        return new JPAQueryFactory(entityManager);
-    }
+  @Bean
+  public JPAQueryFactory jpaQueryFactory() {
+    return new JPAQueryFactory(entityManager);
+  }
 }
