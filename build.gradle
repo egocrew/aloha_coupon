@@ -1,5 +1,5 @@
 buildscript {
-    ext{
+    ext {
         springbootVersion = '2.1.7.RELEASE'
     }
     repositories {
@@ -13,7 +13,7 @@ buildscript {
 plugins {
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
-// 스프링 부트의 필수 플러그인
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -56,6 +56,16 @@ dependencies {
 
     // Mysql
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+
+    // FCM push
+    implementation 'com.google.firebase:firebase-admin:6.8.1'
+
+    //okhttp3
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
+
+    // Java Simplified Encryption(Jasypt)
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2'
+
 
 }
 
