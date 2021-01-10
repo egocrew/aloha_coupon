@@ -9,5 +9,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserSignInResponse {
-    private Long userId;
+    private Long seq;
 }

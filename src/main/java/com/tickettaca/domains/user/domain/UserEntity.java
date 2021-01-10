@@ -23,8 +23,9 @@ public class UserEntity {
   private String socialToken;
 
   @Builder
-  public UserEntity(String userToken, String socialToken,String name) {
+  public UserEntity(String userToken,String pushToken, String socialToken,String name) {
     this.userToken = userToken;
+    this.pushToken = pushToken;
     this.socialToken = socialToken;
     this.name = name;
   }
@@ -32,4 +33,15 @@ public class UserEntity {
   public void update(String userToken) {
     this.userToken = userToken;
   }
+
+  public void updateName(String name) {
+    this.name=name;
+  }
+
+  public void updatePush(String pushToken){this.pushToken=pushToken;}
+
+  @PrePersist
+  public void prePersist() {
+    this.name = this.name == null ? "" : this.name;
+    }
 }

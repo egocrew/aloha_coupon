@@ -2,11 +2,10 @@ package com.tickettaca.domains.user.domain;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.tickettaca.domains.user.application.dto.UserListResponse;
+import com.tickettaca.domains.user.application.dto.LoverResponse;
+import com.tickettaca.domains.user.application.dto.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -14,13 +13,32 @@ public class UserSupportRepository {
   private final JPAQueryFactory queryFactory;
   private QUserEntity userEntity = QUserEntity.userEntity;
 
-  public List<UserListResponse> coupleList(String userToken) {
+  public UserResponse coupleList(String socialToken) {
     return queryFactory
         .select(
             Projections.constructor(
-                UserListResponse.class, userEntity.id.as("seq"), userEntity.name, userEntity.userToken.as("token")))
+                UserResponse.class,
+                userEntity.id.as("seq"),
+                userEntity.name.coalesce("").as("name"),
+                userEntity.userToken.as("token")))
         .from(userEntity)
-        .where(userEntity.userToken.eq(userToken))
-        .fetch();
+        .where(userEntity.socialToken.eq(socialToken))
+        .fetchOne();
+  }
+
+  public LoverResponse findLover(String userToken, String socialToken) {
+    return queryFactory
+        .select(
+            Projections.constructor(
+                LoverResponse.class,
+                userEntity.id.as("partnerSeq"),
+                userEntity.name.as("partnerName")))
+        .from(userEntity)
+        .where(
+            userEntity
+                .userToken
+                .eq(userToken)
+                .and(userEntity.socialToken.notEqualsIgnoreCase(socialToken)))
+        .fetchOne();
   }
 }

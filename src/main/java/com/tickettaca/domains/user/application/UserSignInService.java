@@ -1,11 +1,13 @@
 package com.tickettaca.domains.user.application;
 
-import com.tickettaca.domains.user.application.dto.UserSignInResponse;
+import com.tickettaca.domains.user.application.dto.CoupleResponse;
+import com.tickettaca.domains.user.application.dto.UserSignInRequest;
 import com.tickettaca.domains.user.domain.UserEntity;
 import com.tickettaca.domains.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Random;
 
 @Service
@@ -13,23 +15,32 @@ import java.util.Random;
 public class UserSignInService {
 
   private final UserRepository userRepository;
+  private final CoupleListService coupleListService;
 
-  public UserSignInResponse signIn(String socialToken, String name) {
+  @Transactional
+  public CoupleResponse signIn(UserSignInRequest userSignInRequest) {
 
     UserEntity userEntity =
         userRepository
-            .findUserEntityBySocialToken(socialToken)
-            .orElseGet(() -> signup(socialToken, name));
+            .findUserEntityBySocialToken(userSignInRequest.getToken())
+            .orElseGet(
+                () -> signup(userSignInRequest.getToken(), userSignInRequest.getPushToken()));
 
-    return new UserSignInResponse(userEntity.getId());
+    userEntity.updatePush(userSignInRequest.getPushToken());
+
+    CoupleResponse coupleResponse = coupleListService.userInfo(userSignInRequest.getToken());
+
+    return coupleResponse;
   }
 
-  public UserEntity signup(String socialToken, String name) {
-    return UserEntity.builder()
-        .socialToken(socialToken)
-        .name(name)
-        .userToken(temporaryToken())
-        .build();
+  @Transactional
+  public UserEntity signup(String socialToken, String pushToken) {
+    return userRepository.save(
+        UserEntity.builder()
+            .socialToken(socialToken)
+            .pushToken(pushToken)
+            .userToken(temporaryToken())
+            .build());
   }
 
   public String temporaryToken() {
