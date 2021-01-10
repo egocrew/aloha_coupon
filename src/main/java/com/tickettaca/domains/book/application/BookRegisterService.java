@@ -3,7 +3,6 @@ package com.tickettaca.domains.book.application;
 import com.tickettaca.domains.book.application.dto.BookRegisterRequest;
 import com.tickettaca.domains.book.domain.BookEntity;
 import com.tickettaca.domains.book.domain.BookRepository;
-import com.tickettaca.domains.user.domain.UserEntity;
 import com.tickettaca.domains.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +17,13 @@ public class BookRegisterService {
 
   public ResponseEntity bookRegister(String userToken, BookRegisterRequest bookRegisterRequest) {
 
-    UserEntity userEntity =
-        userRepository
-            .findById(bookRegisterRequest.getUserId())
-            .orElseThrow(() -> new IllegalArgumentException("Invalid userID"));
+    bookRepository.save(
+        BookEntity.builder()
+            .userToken(userToken)
+            .contents(bookRegisterRequest.getDesc())
+            .name(bookRegisterRequest.getName())
+            .build());
 
-    return ResponseEntity.ok()
-        .body(
-            bookRepository.save(
-                BookEntity.builder()
-                    .userToken(userToken)
-                    .contents(bookRegisterRequest.getContents())
-                    .name(bookRegisterRequest.getName())
-                    .userEntity(userEntity)
-                    .build()));
+    return ResponseEntity.ok().build();
   }
 }

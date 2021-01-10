@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class BookRegisterController {
   private final BookRegisterService bookRegisterService;
 
-  @PostMapping("/book/{userToken}")
-  public ResponseEntity bookRegister(@PathVariable String userToken, @RequestBody BookRegisterRequest bookRegisterRequest) {
-    return ResponseEntity.ok().body(bookRegisterService.bookRegister(userToken,bookRegisterRequest));
+  @PostMapping("/book/{token}")
+  public ResponseEntity bookRegister(
+      @PathVariable String token, @RequestBody BookRegisterRequest bookRegisterRequest) {
+    bookRegisterService.bookRegister(token, bookRegisterRequest);
+    return ResponseEntity.ok().build();
   }
 }

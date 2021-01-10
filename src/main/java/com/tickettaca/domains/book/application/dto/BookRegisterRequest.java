@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class BookRegisterRequest {
-    private String name;
-    private String contents;
-    private Long userId;
+  private String name;
+  private String desc;
+  private Long seq;
 }
