@@ -51,11 +51,8 @@ public class CouponEntity {
     this.status = status;
   }
 
-  public void update(
-      LocalDate issueDate, LocalDate expirationDate, CouponStatus status) {
-    this.issueDate = issueDate;
-    this.expirationDate = expirationDate;
+  public void update(CouponStatus status) {
+    this.useDate = LocalDate.now();
     this.status = status;
-
   }
 }

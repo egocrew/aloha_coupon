@@ -21,31 +21,35 @@ public class CouponSupportRepository {
             Projections.constructor(
                 CouponListResponse.class,
                 couponEntity.status.as("state"),
+                couponEntity.issueDate.as("issueDate"),
                 couponEntity.expirationDate.as("deadLine"),
                 couponEntity.bookEntity.contents.as("desc"),
                 couponEntity.bookEntity.name,
-                couponEntity.userEntity.id.as("ownSeq"),
-                couponEntity.id.as("seq"),
-                couponEntity.useDate.as("deadDay")))
+                couponEntity.userEntity.id.as("ownSeq"), // 받는 사람
+                couponEntity.id.as("seq"))) // 쿠폰 식별자
         .from(couponEntity)
         .where(couponEntity.userToken.eq(userToken))
         .fetch();
   }
 
-  public List<CouponHistoryResponse> history(CouponStatus state, String userToken) {
+  public List<CouponHistoryResponse> history(String userToken) {
     return queryFactory
         .select(
             Projections.constructor(
                 CouponHistoryResponse.class,
                 couponEntity.status.as("state"),
+                couponEntity.issueDate.as("issueDate"),
                 couponEntity.expirationDate.as("deadLine"),
                 couponEntity.bookEntity.contents.as("desc"),
                 couponEntity.bookEntity.name,
-                couponEntity.userEntity.id.as("ownSeq"),
-                couponEntity.id.as("seq"),
-                couponEntity.useDate.as("deadDay")))
+                couponEntity.userEntity.id.as("ownSeq"), // 받는 사람
+                couponEntity.id.as("seq"))) // 쿠폰 식별자
         .from(couponEntity)
-        .where(couponEntity.userToken.eq(userToken).and(couponEntity.status.eq(state)))
+        .where(
+            couponEntity
+                .userToken
+                .eq(userToken)
+                .and(couponEntity.status.eq(CouponStatus.AFTER_USE)))
         .fetch();
   }
 }

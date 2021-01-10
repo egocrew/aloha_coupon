@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 public class CouponUpdateController {
@@ -16,10 +18,11 @@ public class CouponUpdateController {
   private final CouponUpdateService couponUpdateService;
 
   // 쿠폰 사용
-  @PutMapping("/coupon/{userIndex}")
+  @PutMapping("/coupon/{userId}")
   public ResponseEntity updateCoupon(
-      @PathVariable Long userIndex, @RequestBody CouponUpdateRequest couponUpdateRequest) {
-    couponUpdateService.updateCoupon(userIndex,couponUpdateRequest);
+      @PathVariable Long userId, @RequestBody CouponUpdateRequest couponUpdateRequest)
+      throws IOException {
+    couponUpdateService.updateCoupon(userId, couponUpdateRequest);
     return ResponseEntity.ok().build();
   }
 }

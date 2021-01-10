@@ -5,5 +5,5 @@ import lombok.Getter;
 
 @Getter
 public class CoupleUpdateRequest {
-    private String userToken;
+    private String token;
 }

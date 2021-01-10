@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+
 @RestController
 @RequiredArgsConstructor
 public class CouponRegisterController {
@@ -13,10 +16,11 @@ public class CouponRegisterController {
   private final CouponRegisterService couponRegisterService;
 
   // 쿠폰 발급
-  @PostMapping("/coupon/add/{userIndex}")
+  @PostMapping("/coupon/add/{userId}")
   public ResponseEntity register(
-      @PathVariable Long userIndex, @RequestBody CouponRegisterRequest couponRegisterRequest) {
-    couponRegisterService.register(userIndex, couponRegisterRequest);
+      @PathVariable Long userId, @RequestBody CouponRegisterRequest couponRegisterRequest)
+      throws ExecutionException, InterruptedException, IOException {
+    couponRegisterService.register(userId, couponRegisterRequest);
     return ResponseEntity.ok().build();
   }
 }
