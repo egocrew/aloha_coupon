@@ -1,9 +1,15 @@
 spring:
+jasypt:
+  encryptor:
+    property:
+      prefix: ENC(
+      suffix: )
+    algorithm: PBEWithMD5AndDES
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/n24Coupon?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: root
-    password: black0722
+    url: ENC(N6FkshyCUlU48/te7Zp7pmcOgUU3A9zBFgwWhA8rDkKHH/HOcgfni51QJkpH/x6SHnPzirv7Vx90lrG9R73zPfQ0QdAqlpP6FBhFYLuTDMGCxEOd4gHd2psc8QrH+JVTB7XryAyKGKwTYE4K/rrkg9/eFRnI9VWGe56RvwhHsHfdP7Pnt3uwifvS9VFvUi0y)
+    username: ENC(LSDY90fFLqplzSATIlRUOw==)
+    password: ENC(0dkePjN/2cwAKPzNizq3znZZtYVT4eOb)
   jpa:
     show-sql: true
     properties:
@@ -13,3 +19,7 @@ spring:
   h2:
     console:
       enabled: true
+google:
+  fcm:
+    api_url: ENC(kL2+AppIbfCSWFbqyAoaaqym1j0v//Jtvch00u0uhbu0WtKFZF+UekRoAcdSHT6hjiMolhhnVyvl5uTB0lXHbIE4JTz2r4T4F7D6ltN8B74=)
+    json: ENC(p3TRkulSnDZRWVPRNdgCBVl0QBe8UtoSCG8BfQu/aFZK7iH5xuht4NETmqrIgLoxWRbj1mi02zJllc/S6aEQHQ==)

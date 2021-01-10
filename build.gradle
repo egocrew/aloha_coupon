@@ -1,5 +1,5 @@
 buildscript {
-    ext{
+    ext {
         springbootVersion = '2.1.7.RELEASE'
     }
     repositories {
@@ -10,7 +10,10 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
     }
 }
-// 스프링 부트의 필수 플러그인
+plugins {
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -18,12 +21,24 @@ apply plugin: 'io.spring.dependency-management'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
+    implementation 'com.querydsl:querydsl-jpa'
+
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
@@ -41,4 +56,35 @@ dependencies {
 
     // Mysql
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+
+    // FCM push
+    implementation 'com.google.firebase:firebase-admin:6.8.1'
+
+    //okhttp3
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
+
+    // Java Simplified Encryption(Jasypt)
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2'
+
+
+}
+
+// querydsl
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
 }
