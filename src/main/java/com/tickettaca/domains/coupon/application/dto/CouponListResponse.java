@@ -35,7 +35,7 @@ public class CouponListResponse {
     this.ownSeq = ownSeq;
     this.seq = seq;
     this.deadDay = "";
-    this.dday = String.valueOf(ChronoUnit.DAYS.between(issueDate, deadLine));
+    this.dday = String.valueOf(ChronoUnit.DAYS.between(LocalDate.now(), deadLine));
   }
 
   public String convertDate(LocalDate date) {
