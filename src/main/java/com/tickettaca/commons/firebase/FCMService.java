@@ -67,9 +67,17 @@ public class FCMService {
                             .body(body)
                             .image(null)
                             .build())
+                    .apns(
+                        NotificationRequest.Apns.builder()
+                            .payload(
+                                NotificationRequest.Payload.builder()
+                                    .aps(NotificationRequest.Aps.builder().sound("default").build())
+                                    .build())
+                            .build())
                     .build())
             .validate_only(false)
             .build();
+    
 
     String fcmMessageString = "";
 

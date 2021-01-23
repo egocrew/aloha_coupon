@@ -15,9 +15,31 @@ public class NotificationRequest {
   @Builder
   @AllArgsConstructor
   @Getter
+  public static class Apns{
+    private Payload payload;
+
+  }
+  @Builder
+  @AllArgsConstructor
+  @Getter
+  public static class Payload{
+    private Aps aps;
+
+  }
+  @Builder
+  @AllArgsConstructor
+  @Getter
+  public static class Aps{
+    private String sound;
+  }
+
+  @Builder
+  @AllArgsConstructor
+  @Getter
   public static class Message {
     private Notification notification;
     private String token;
+    private Apns apns;
   }
 
   @Builder
@@ -27,5 +49,7 @@ public class NotificationRequest {
     private String title;
     private String body;
     private String image;
+//    private String sound;
   }
+
 }
