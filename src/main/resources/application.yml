@@ -1,15 +1,9 @@
 spring:
-jasypt:
-  encryptor:
-    property:
-      prefix: ENC(
-      suffix: )
-    algorithm: PBEWithMD5AndDES
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(N6FkshyCUlU48/te7Zp7pmcOgUU3A9zBFgwWhA8rDkKHH/HOcgfni51QJkpH/x6SHnPzirv7Vx90lrG9R73zPfQ0QdAqlpP6FBhFYLuTDMGCxEOd4gHd2psc8QrH+JVTB7XryAyKGKwTYE4K/rrkg9/eFRnI9VWGe56RvwhHsHfdP7Pnt3uwifvS9VFvUi0y)
-    username: ENC(LSDY90fFLqplzSATIlRUOw==)
-    password: ENC(0dkePjN/2cwAKPzNizq3znZZtYVT4eOb)
+    url: ENC(NZ/DDjnt+e7x9CncI/mYxuT4+KY7sX11Vhk/657v7xp/4S3fFwxQDnmMv2FkggxH4HQOGPNlZYFlVHN997jaWJYA2jjoU5sF+ws1gig6e2z6oAX2Zg/8x6GK+F2yjV+GTL8VfHQe5qCFOSqbxMrYENUDB9g/QmL/mRh+cnesSfrMCo9gGKwytDqlWUJndKv3)
+    username: ENC(KsA89EdM9qElTzUjbkalmA==)
+    password: ENC(B9TOcc4OMoQkuI7b4WyGlGlFDVTUU8D7)
   jpa:
     show-sql: true
     properties:
@@ -21,5 +15,12 @@ jasypt:
       enabled: true
 google:
   fcm:
-    api_url: ENC(kL2+AppIbfCSWFbqyAoaaqym1j0v//Jtvch00u0uhbu0WtKFZF+UekRoAcdSHT6hjiMolhhnVyvl5uTB0lXHbIE4JTz2r4T4F7D6ltN8B74=)
-    json: ENC(p3TRkulSnDZRWVPRNdgCBVl0QBe8UtoSCG8BfQu/aFZK7iH5xuht4NETmqrIgLoxWRbj1mi02zJllc/S6aEQHQ==)
+    api_url: ENC(k7NAWqUEDKT1lBPaXLaE4rSWP9nR4g4OXU2lpMp9iLAmEU/SPc9U3Ypd/t7+byWuUcpTNQyGSJY1cY3oI57urz+ZLsPICHoEi3Rh+m9WmP8=)
+    json: ENC(n9AOWbLwj4Bnum2xZHLjz7mC+Y6ueM0seB2dt1XYRPVf4z4v5zreKob2MlG00X08c6y1c5Yh9tOYo6EwYMtj4w==)
+
+jasypt:
+  encryptor:
+    property:
+      prefix: ENC(
+      suffix: )
+    algorithm: PBEWithMD5AndDES
