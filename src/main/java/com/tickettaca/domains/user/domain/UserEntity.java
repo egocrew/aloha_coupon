@@ -21,8 +21,11 @@ public class UserEntity {
   private String userToken;
   private String socialToken;
 
+  @Enumerated(EnumType.STRING)
+  private PremiumType premium;
+
   @Builder
-  public UserEntity(String userToken,String pushToken, String socialToken,String name) {
+  public UserEntity(String userToken, String pushToken, String socialToken, String name) {
     this.userToken = userToken;
     this.pushToken = pushToken;
     this.socialToken = socialToken;
@@ -34,13 +37,20 @@ public class UserEntity {
   }
 
   public void updateName(String name) {
-    this.name=name;
+    this.name = name;
   }
 
-  public void updatePush(String pushToken){this.pushToken=pushToken;}
+  public void updatePush(String pushToken) {
+    this.pushToken = pushToken;
+  }
+
+  public void updatePremium(PremiumType premiumType) {
+    this.premium = premiumType;
+  }
 
   @PrePersist
   public void prePersist() {
     this.name = this.name == null ? "" : this.name;
-    }
+    this.premium = this.premium == null ? PremiumType.BASIC : this.premium;
+  }
 }

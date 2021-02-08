@@ -20,7 +20,8 @@ public class UserSupportRepository {
                 UserResponse.class,
                 userEntity.id.as("seq"),
                 userEntity.name.coalesce("").as("name"),
-                userEntity.userToken.as("token")))
+                userEntity.userToken.as("token"),
+                userEntity.premium))
         .from(userEntity)
         .where(userEntity.socialToken.eq(socialToken))
         .fetchOne();

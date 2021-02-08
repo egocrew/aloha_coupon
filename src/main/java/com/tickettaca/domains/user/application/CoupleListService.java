@@ -24,6 +24,7 @@ public class CoupleListService {
         user.getName(),
         user.getToken(),
         lover.getPartnerSeq(),
-        lover.getPartnerName());
+        lover.getPartnerName(),
+        user.getPremiumType());
   }
 }
