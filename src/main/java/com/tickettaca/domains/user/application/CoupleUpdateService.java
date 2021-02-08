@@ -2,6 +2,7 @@ package com.tickettaca.domains.user.application;
 
 import com.tickettaca.commons.firebase.FCMService;
 import com.tickettaca.domains.user.application.dto.CoupleUpdateRequest;
+import com.tickettaca.domains.user.domain.PremiumType;
 import com.tickettaca.domains.user.domain.UserEntity;
 import com.tickettaca.domains.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,34 @@ public class CoupleUpdateService {
             .findUserEntityBySocialToken(token)
             .orElseThrow(() -> new IllegalArgumentException("Invalid SocialToken"));
     userEntity.updateName(name);
+  }
+
+  @Transactional
+  public void updatePremium(Long userIndex) throws IOException {
+
+    UserEntity userEntity =
+        userRepository
+            .findById(userIndex)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid UserIndex"));
+    UserEntity loverEntity = userRepository.findByLover(userEntity.getUserToken(), userIndex);
+
+    userEntity.updatePremium(PremiumType.PREMIUM);
+    loverEntity.updatePremium(PremiumType.PREMIUM);
+    fcmService.sendMessageTo(
+        userEntity.getPushToken(),
+        "알로하 쿠폰 플러스 등장!",
+        "마음을 잘 표현하는 다정한"
+            + userEntity.getName()
+            + "\uD83D\uDC96"
+            + loverEntity.getName()
+            + "커플이시군요!");
+    fcmService.sendMessageTo(
+        loverEntity.getPushToken(),
+        "알로하 쿠폰 플러스 등장!",
+        "마음을 잘 표현하는 다정한"
+            + userEntity.getName()
+            + "\uD83D\uDC96"
+            + loverEntity.getName()
+            + "커플이시군요!");
   }
 }

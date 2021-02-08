@@ -29,4 +29,10 @@ public class UserUpdateController {
     coupleUpdateService.updateName(token, userNameRequest.getName());
     return ResponseEntity.ok().build();
   }
+
+  @PutMapping("/user/{userIndex}")
+  public ResponseEntity updatePremium(@PathVariable Long userIndex) throws IOException {
+    coupleUpdateService.updatePremium(userIndex);
+    return ResponseEntity.ok().build();
+  }
 }

@@ -1,5 +1,6 @@
 package com.tickettaca.domains.user.application.dto;
 
+import com.tickettaca.domains.user.domain.PremiumType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,4 +14,5 @@ public class CoupleResponse {
   private String token;
   private Long partnerSeq;
   private String partnerName;
+  private PremiumType premiumType;
 }
