@@ -8,9 +8,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(NZ/DDjnt+e7x9CncI/mYxuT4+KY7sX11Vhk/657v7xp/4S3fFwxQDnmMv2FkggxH4HQOGPNlZYFlVHN997jaWJYA2jjoU5sF+ws1gig6e2z6oAX2Zg/8x6GK+F2yjV+GTL8VfHQe5qCFOSqbxMrYENUDB9g/QmL/mRh+cnesSfrMCo9gGKwytDqlWUJndKv3)
+    url: ENC(+fQUdxbmIMzrbLaT/OxOEfBccYWDP3MjDk0lH6OeP9Jzwb6Yr9JkTxUJN/E4SOZHGUBwcniEeoDe3cyboGjwzp2pWuadUoZwKZ1aLAAHhlqHukpa/MrGYxHYQObuZTeQGcYb67EiKs5ZLz9BadGgMF03ZDzEgfDOthdAMLBVQ+xcf+h4ZFK6ENtivtZ/4tKj)
     username: ENC(KsA89EdM9qElTzUjbkalmA==)
-    password: ENC(B9TOcc4OMoQkuI7b4WyGlGlFDVTUU8D7)
+    password: ENC(I3JTMr1UlL3AtX7NCOi3ufp0ZhCGv5A1)
+#spring:
   jpa:
     show-sql: true
     properties:
