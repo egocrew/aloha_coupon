@@ -25,7 +25,7 @@ public class BookSupportRepository {
                 bookEntity.contents.as("desc"),
                 bookEntity.id.as("seq")))
             .from(bookEntity)
-        .where(bookEntity.userToken.eq(userToken))
+        .where(bookEntity.userToken.eq(userToken).and(bookEntity.status.eq(true)))
         .fetch();
   }
 }
