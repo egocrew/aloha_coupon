@@ -1,5 +1,6 @@
 package com.tickettaca.domains.coupon.domain;
 
+import com.tickettaca.domains.BaseTimeEntity;
 import com.tickettaca.domains.book.domain.BookEntity;
 import com.tickettaca.domains.user.domain.UserEntity;
 import lombok.*;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Table(name = "coupon")
 @Builder
 @AllArgsConstructor
-public class CouponEntity {
+public class CouponEntity extends BaseTimeEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

@@ -1,5 +1,6 @@
 package com.tickettaca.domains.user.domain;
 
+import com.tickettaca.domains.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 @Getter
-public class UserEntity {
+public class UserEntity extends BaseTimeEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
