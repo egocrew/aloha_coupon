@@ -73,10 +73,10 @@ public class CoupleUpdateService {
     fcmService.sendMessageTo(
         loverEntity.getPushToken(),
         "알로하 쿠폰 플러스 등장!",
-        "마음을 잘 표현하는 다정한"
+        "마음을 잘 표현하는 다정한 "
             + userEntity.getName()
             + "\uD83D\uDC96"
             + loverEntity.getName()
-            + "커플이시군요!");
+            + " 커플이시군요!");
   }
 }
