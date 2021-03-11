@@ -1,30 +1,17 @@
-buildscript {
-    ext {
-        springbootVersion = '2.1.7.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springbootVersion}")
-    }
-}
 plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+group = 'com.noonch'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
-group 'org.example'
-version '1.0-SNAPSHOT'
 configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
     compileOnly {
         extendsFrom annotationProcessor
@@ -47,11 +34,11 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     // Springboot
-    compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Spring Data JPA
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile('com.h2database:h2')
 
     // Mysql
@@ -66,7 +53,16 @@ dependencies {
     // Java Simplified Encryption(Jasypt)
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2'
 
+    // logging
+    compile 'org.springframework.boot:spring-boot-starter-log4j2'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.10.3'
 
+
+
+}
+
+test {
+    useJUnitPlatform()
 }
 
 // querydsl
