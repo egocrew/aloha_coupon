@@ -17,15 +17,17 @@ import java.io.IOException;
 public class UserUpdateController {
   private final CoupleUpdateService coupleUpdateService;
 
-  @PutMapping("/couple/{userId}")
+  @PutMapping("/couple/{userIndex}")
   public ResponseEntity updateCouple(
-      @RequestBody CoupleUpdateRequest coupleUpdateRequest, @PathVariable Long userId) throws IOException {
-    coupleUpdateService.updateCouple(coupleUpdateRequest, userId);
+      @RequestBody CoupleUpdateRequest coupleUpdateRequest, @PathVariable Long userIndex)
+      throws IOException {
+    coupleUpdateService.updateCouple(coupleUpdateRequest, userIndex);
     return ResponseEntity.ok().build();
   }
 
   @PutMapping("/{token}/user")
-  public ResponseEntity updateName(@PathVariable String token,@RequestBody UserNameRequest userNameRequest) {
+  public ResponseEntity updateName(
+      @PathVariable String token, @RequestBody UserNameRequest userNameRequest) {
     coupleUpdateService.updateName(token, userNameRequest.getName());
     return ResponseEntity.ok().build();
   }

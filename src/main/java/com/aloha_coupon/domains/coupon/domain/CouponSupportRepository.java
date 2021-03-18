@@ -1,9 +1,9 @@
 package com.aloha_coupon.domains.coupon.domain;
 
-import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.aloha_coupon.domains.coupon.application.dto.CouponHistoryResponse;
 import com.aloha_coupon.domains.coupon.application.dto.CouponListResponse;
+import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +31,8 @@ public class CouponSupportRepository {
                 couponEntity.userEntity.id.as("ownSeq"), // 받는 사람
                 couponEntity.id.as("seq"))) // 쿠폰 식별자
         .from(couponEntity)
-        .where(couponEntity.userToken.eq(userToken))
+        .where(
+            couponEntity.userToken.eq(userToken).or(couponEntity.expirationDate.after(localDate)))
         .fetch();
   }
 
@@ -52,8 +53,7 @@ public class CouponSupportRepository {
             couponEntity
                 .userToken
                 .eq(userToken)
-                .and(couponEntity.status.eq(CouponStatus.AFTER_USE))
-                    .or(couponEntity.expirationDate.after(localDate)))
+                .and(couponEntity.status.eq(CouponStatus.AFTER_USE)))
         .fetch();
   }
 }

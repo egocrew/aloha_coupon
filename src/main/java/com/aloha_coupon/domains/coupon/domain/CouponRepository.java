@@ -13,4 +13,6 @@ public interface CouponRepository extends JpaRepository<CouponEntity, Long> {
   List<CouponEntity> findHistory(String userToken, CouponStatus status);
 
   Optional<CouponEntity> findByIdAndUserEntity_Id(Long couponId, Long userIndex);
+
+  void deleteCouponEntityByUserToken(String userToken);
 }
