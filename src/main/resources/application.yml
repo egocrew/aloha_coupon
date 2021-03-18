@@ -32,7 +32,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+
+
+
 google:
   fcm:
     api_url: ENC(k7NAWqUEDKT1lBPaXLaE4rSWP9nR4g4OXU2lpMp9iLAmEU/SPc9U3Ypd/t7+byWuUcpTNQyGSJY1cY3oI57urz+ZLsPICHoEi3Rh+m9WmP8=)
@@ -54,7 +57,7 @@ spring:
       on-profile: deploy
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(+fQUdxbmIMzrbLaT/OxOEfBccYWDP3MjDk0lH6OeP9Jzwb6Yr9JkTxUJN/E4SOZHGUBwcniEeoDe3cyboGjwzp2pWuadUoZwKZ1aLAAHhlqHukpa/MrGYxHYQObuZTeQGcYb67EiKs5ZLz9BadGgMF03ZDzEgfDOthdAMLBVQ+xcf+h4ZFK6ENtivtZ/4tKj)
+    url: ENC(hlZ9mtKhfgV/ohMUAgImHRqMTjbLMqur/1o59wCEa8EQO5OMhGn6iR5WbUCGu2Dmn3IwSxTUjnD0FzoEZ/yVnO886MemFv1u3s0T2pIdaf5OI9EUttLfI/hl4JISmmM51i4UXKfnNgtSt4d42PMBGaoCVdgOt/i26Sx1oRYeeRpJ7yC7gUw38pywDEcrP5Av)
     username: ENC(KsA89EdM9qElTzUjbkalmA==)
     password: ENC(I3JTMr1UlL3AtX7NCOi3ufp0ZhCGv5A1)
 
